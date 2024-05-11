@@ -1,0 +1,93 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOT_NAME | QR Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .container p {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      .qr-container {
+        margin-top: 20px;
+      }
+      .qr-container img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      a {
+        text-decoration: none;
+        font-weight: 600;
+        color: coral;
+      }
+      #thumbnail-img {
+        cursor: none;
+      }
+    </style>
+    <!-- Ensure that the script runs after the element is created -->
+    <script>
+      // Wait for the DOMContentLoaded event to ensure that the DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the image element by ID
+        const image = document.getElementById("thumbnail-img");
+
+        if (image) {
+          // Check if the image element exists
+          const refreshEveryMS = 2000;
+
+          setInterval(() => {
+            if (!image.src.includes("?")) {
+              image.src = `${image.src}?${Date.now()}`;
+            } else {
+              image.src =
+                image.src.slice(0, image.src.indexOf("?") + 1) + Date.now();
+            }
+
+            console.log("image refreshed");
+            console.log(image.src);
+          }, refreshEveryMS);
+        } else {
+          console.error("Image element not found");
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <br /><br /><br />
+    <div class="container">
+      <h1>BOT_NAME QR Code Generator</h1>
+      <p>
+        This is a QR code generator for BOT_NAME Login made with
+        <a href="https://github.com/WhiskeySockets/Baileys" target="_blank"
+          >WhiskeySockets/Baileys</a
+        >. Developed by <a href="github.com/">TEAM_NAME</a>.
+      </p>
+
+      <div class="qr-container">
+        <img src="qr.png" id="thumbnail-img" alt="scan QR" />
+      </div>
+    </div>
+  </body>
+</html>
